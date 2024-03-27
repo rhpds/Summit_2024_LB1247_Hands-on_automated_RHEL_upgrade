@@ -1,14 +1,14 @@
 ---
 name: modules
-title: Sample Module Title
-version: master
+title: RHEL In-place Upgrade Automation Workshop
+version: main
 nav:
   - modules/ROOT/nav.adoc
 
 asciidoc:
   attributes:
-    lab_name: "I'm the lab_name var"
-    release-version: master
+    lab_name: "RHEL In-place Upgrade Automation Workshop"
+    release-version: main
     page-pagination: true
     my_var: "foo"
     guid: my-guid
