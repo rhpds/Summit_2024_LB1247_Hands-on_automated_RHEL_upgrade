@@ -44,18 +44,26 @@ ____
 
 === Step 1 - Access the Environment
 
-We will use Visual Studio Code (VS Code) as it provides a convenient and intuitive way to use a web browser to edit files and access terminal sessions.
-If you are a command line hero, direct SSH access is available if VS Code is not to your liking.
-There is a short YouTube video to explain if you need additional clarity: https://youtu.be/Y_Gx4ZBfcuk[Ansible Workshops - Accessing your workbench environment].
+We can use Visual Studio Code (VS Code) as it provides a convenient and intuitive way to use a web browser to edit files and access terminal sessions. Alternatively, you can just connect using SSH in a terminal window.
 
-* You can open VS Code in your web browser using the "WebUI" link under "VS Code access" on the workshop launch page provided by your instructor.
-The password is given below the link.
-For example:
+* If you prefer to just connect using SSH rather than using VS code, paste this command into your terminal:
 +
-image::vscode_link.png[Example link to VS Code WebUI]
+[subs=-macros]
+`{ssh_command}`
++
+Enter `yes` if you see a "key is not known" warning, then enter the password `{ssh_password}` when promted. 
 
-* After opening the link, type in the provided password to access your instance of VS Code.
+* To use VS Code, open the link below and enter the password in your web browser:
++
+[cols="~,~"]
+|===
+| Link
+| {vscode_server_url}[{vscode_server_url}^]
 
+| Password
+| `{vscode_server_password}`
+|===
++
 ____
 *Note*
 
@@ -68,15 +76,14 @@ ____
 
 Terminal sessions provide access to the RHEL commands and utilities that will help us understand what's going on "behind the curtain" when the RHEL in-place upgrade automation is doing its thing.
 
-* Use VS Code to open a terminal session.
-For example:
+* If you are using VS Code, follow this example to open a terminal session:
 +
 image::new_term.svg[Example of how to open a terminal session in VS Code]
 
-* This terminal session will be running on the AAP control host `ansible-1`.
+* No matter if you used SSH or VS Code, your terminal session will be running on the AAP control host `ansible-1`.
 Use the `cat /etc/hosts` command to see the hostnames of your pet app hosts.
 Next, use the `ssh` command to login to one of your pet app hosts.
-Finally, use the highlighted commands confirm the RHEL OS version and kernel version installed.
+Finally, use the highlighted commands to confirm the RHEL OS version and kernel version installed.
 +
 For example:
 +
@@ -89,13 +96,21 @@ Then the commands `cat /etc/redhat-release` and `uname -r` are used to output th
 
 The AAP Web UI is where we will go to submit and check the status of the Ansible playbook jobs we will use to automate the RHEL in-place upgrade workflow.
 
-* Let's open the AAP Web UI in a new web browser tab using the "WebUI" link under "Automation controller" on the workshop launch page.
-For example:
+* Use the link below to open the AAP Web UI in a new web browser tab.
 +
-image::aap_link.png[Example link to AAP Web UI]
+[cols="~,~"]
+|===
+| Link
+| {automationcontroller_url}[{automationcontroller_url}^]
 
-* Enter the username `admin` and the password provided.
-This will bring you to your AAP Web UI dashboard like the example below:
+| Username
+| `{automationcontroller_user_name}`
+
+| Password
+| `{automationcontroller_user_password}`
+|===
+
+* After entering the username and password on the login page, this will bring you to your AAP Web UI dashboard like the example below:
 +
 image::aap_console_example.svg[Example AAP Web UI dashboard]
 
@@ -105,12 +120,21 @@ image::aap_console_example.svg[Example AAP Web UI dashboard]
 
 We will use the RHEL Web Console to review the results of the Leapp pre-upgrade reports we generate for our pet app servers.
 
-* Open a new web browser tab using the link under "RHEL Web Console" on the workshop launch page.
-For example:
+* Open a new web browser tab using the link below to access the RHEL Web Console:
 +
-image::cockpit_link.png[Example link to RHEL Web Console]
+[cols="~,~"]
+|===
+| Link
+| {cockpit_url}[{cockpit_url}^]
 
-* Enter the username `student` and the password provided.
+| Username
+| `{cockpit_user_name}`
+
+| Password
+| `{cockpit_user_password}`
+|===
+
+* Enter the username and password provided.
 This will bring you to a RHEL Web Console Overview page like the example below:
 +
 image::cockpit_example.svg[Example RHEL Web Console]
@@ -126,7 +150,7 @@ The solution of the task is shown underneath a warning sign.
 == Conclusion
 
 In this exercise, we learned about the lab environment we will be using to continue through the workshop exercises.
-We verified that we are able to use VS Code in our web browser and from there we can open terminal sessions.
+We verified that we are able to open terminal sessions to the hosts in the lab environment.
 We also made sure we are able to access the AAP Web UI which will be the "self-service portal" we use to perform the next steps of the RHEL in-place upgrade automation workflow.
 Finally, we connected to the RHEL Web Console where we will soon be reviewing pre-upgrade reports.
 
