@@ -22,25 +22,19 @@ These are the hosts where we will be upgrading the RHEL operating system (OS).
 | ansible-1
 
 | RHEL7 pet app host 1
-| tidy-bengal
+| {node1_petname}
 
 | RHEL7 pet app host 2
-| strong-hyena
+| {node2_petname}
 
 | RHEL8 pet app host 1
-| more-calf
+| {node3_petname}
 
 | RHEL8 pet app host 2
-| upward-moray
+| {node4_petname}
 |===
 
-____
-*Note*
-
-The inventory names of the pet app hosts will be random pet names different from the example above.
-// FIXME: The workshop launch page provided by your instructor will list the names actually provisioned with your workshop instance.
 We'll dive deeper into why we are using random names in a later exercise.
-____
 
 === Step 1 - Access the Environment
 
@@ -48,8 +42,10 @@ We can use Visual Studio Code (VS Code) as it provides a convenient and intuitiv
 
 * If you prefer to just connect using SSH rather than using VS code, paste this command into your terminal:
 +
-[subs=-macros]
-`{ssh_command}`
+[%nowrap,source,bash,role=execute,subs=attributes+]
+----
+{ssh_command}
+----
 +
 Enter `yes` if you see a "key is not known" warning, then enter the password `{ssh_password}` when promted. 
 
