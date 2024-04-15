@@ -22,19 +22,19 @@ asciidoc:
     cockpit_user_password: MTpasswd
     vscode_server_password: MTpasswd
     vscode_server_url: https://ansible-1.wmrhz.sandbox2418.opentlc.com/editor/
-#   page-links:
-#   - url: {automationcontroller_url}
-#     text: "AAP Web UI"
-#   - url: {cockpit_url}
-#     text: "RHEL Web Console"
-#   - url: {vscode_server_url}
-#     text: "VS Code"
-#   - url: https://github.com/redhat-cop/infra.leapp
-#     text: "GitHub: infra.leapp"
-#   - url: https://github.com/redhat-cop/infra.lvm_snapshots
-#     text: "GitHub: infra.lvm_snapshots"
-#   - url: https://github.com/oamg/leapp-supplements
-#     text: "GitHub: leapp-supplements"
-#   - url: https://www.martinfowler.com/ieeeSoftware/failFast.pdf
-#     text: "Fail Fast"
+    page-links:
+    - url: {automationcontroller_url}
+      text: "AAP Web UI"
+    - url: {cockpit_url}
+      text: "RHEL Web Console"
+    - url: {vscode_server_url}
+      text: "VS Code"
+    - url: https://github.com/redhat-cop/infra.leapp
+      text: "GitHub: infra.leapp"
+    - url: https://github.com/redhat-cop/infra.lvm_snapshots
+      text: "GitHub: infra.lvm_snapshots"
+    - url: https://github.com/oamg/leapp-supplements
+      text: "GitHub: leapp-supplements"
+    - url: https://www.martinfowler.com/ieeeSoftware/failFast.pdf
+      text: "Fail Fast"
 
