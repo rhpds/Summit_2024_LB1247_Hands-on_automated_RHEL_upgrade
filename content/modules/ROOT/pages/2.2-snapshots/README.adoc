@@ -47,33 +47,34 @@ It is this ability to quickly take an entire server back in time that makes snap
 There are a number of different types of snapshot solutions you may choose from.
 Each has their own benefits and drawbacks as summarized in the table below:
 
+[cols="1,2,3,3"]
 |===
-| Snapshot type | Works with | Benefits | Drawbacks
+| Type | Works with | Benefits | Drawbacks
 
 | LVM
-| <ul><li>Bare metal</li><li>On-prem VMs</li><li>Cloud*</li></ul>
-| <ul><li>No external API access required</li><li>Scope can be just OS or everything</li></ul>
-| <ul><li>Free space required in volume group</li>Snapshots can run out of space if not sized correctly</li><li>Automation must backup and restore /boot separately</ul>
+| pass:[<ul><li>Bare metal</li><li>On-prem VMs</li><li>Cloud</li></ul>]
+| pass:[<ul><li>No external API access required</li><li>Scope can be just OS or everything</li></ul>]
+| pass:[<ul><li>Free space required in volume group</li>Snapshots can run out of space if not sized correctly</li><li>Automation must backup and restore /boot separately</ul>]
 
 | VMware
-| <ul><li>On-prem VMs (ESX)</li></ul>
-| <ul><li>Simple and reliable</li><li>Scope includes everything</li></ul>
-| <ul><li>Doesn't support bare metal, etc.</li><li>Using VMware snapshot for over 3 days is discouraged</li><li>Getting API access can be difficult</li><li>No free space in datastores because of overcommitment</li><li>Everything scope might be too much</li></ul>
+| pass:[<ul><li>On-prem VMs (ESX)</li></ul>]
+| pass:[<ul><li>Simple and reliable</li><li>Scope includes everything</li></ul>]
+| pass:[<ul><li>Doesn't support bare metal, etc.</li><li>Using VMware snapshot for over 3 days is discouraged</li><li>Getting API access can be difficult</li><li>No free space in datastores because of overcommitment</li><li>Everything scope might be too much</li></ul>]
 
 | Amazon EBS
-| <ul><li>Amazon EC2</li></ul>
-| <ul><li>Simple and reliable</li><li>Unlimited storage capacity</li><li>Scope can be just OS or everything</li></ul>
-| <ul><li>Only works on AWS</li></ul>
+| pass:[<ul><li>Amazon EC2</li></ul>]
+| pass:[<ul><li>Simple and reliable</li><li>Unlimited storage capacity</li><li>Scope can be just OS or everything</li></ul>]
+| pass:[<ul><li>Only works on AWS</li></ul>]
 
 | Break Mirror
-| <ul><li>Bare metal</li></ul>
-| <ul><li>Alternative to LVM for servers with hardware RAID</li></ul>
-| <ul><li>Significant development and testing effort required</li><li>RAID and Redfish API standards vary across different vendors and hardware models</li></ul>
+| pass:[<ul><li>Bare metal</li></ul>]
+| pass:[<ul><li>Alternative to LVM for servers with hardware RAID</li></ul>]
+| pass:[<ul><li>Significant development and testing effort required</li><li>RAID and Redfish API standards vary across different vendors and hardware models</li></ul>]
 
 | ReaR
-| <ul><li>Bare metal</li><li>On-prem VMs</li></ul>
-| <ul><li>Method of last resort if no snapshot options will work</li></ul>
-| <ul><li>Not really a snapshot, but does offer boot ISO full recovery capability</li></ul>
+| pass:[<ul><li>Bare metal</li><li>On-prem VMs</li></ul>]
+| pass:[<ul><li>Method of last resort if no snapshot options will work</li></ul>]
+| pass:[<ul><li>Not really a snapshot, but does offer boot ISO full recovery capability</li></ul>]
 |===
 
 The following sections explain the pros and cons in detail.
@@ -202,16 +203,17 @@ This practice helps to enforce a key tenet of the RHEL in-place upgrade approach
 
 With these concepts in mind, let's consider if we want to include the apps and app data in what gets rolled back if we need to revert the RHEL upgrade:
 
+[cols="1,3,3"]
 |===
-| Snapshot scope | Benefits | Drawbacks
+| Scope | Benefits | Drawbacks
 
 | OS only
-| <ul><li>Simplifies storage requirements</li><li>Preserves isolation of OS changes from apps and app data</li><li>Reduces risk of rolling back impacting external apps</li></ul>
-| <ul><li>Probably not possible with VMware snapshots</li><li>Discipline required to avoid temptation of trying quick app changes to fix impacts</li></ul>
+| pass:[<ul><li>Simplifies storage requirements</li><li>Preserves isolation of OS changes from apps and app data</li><li>Reduces risk of rolling back impacting external apps</li></ul>]
+| pass:[<ul><li>Probably not possible with VMware snapshots</li><li>Discipline required to avoid temptation of trying quick app changes to fix impacts</li></ul>]
 
 | OS and apps/data
-| <ul><li>Reduces risk if trying to fix app impact during maintenance window</li><li>Helpful if app impact could lead to app data corruption</li></ul>
-| <ul><li>More storage space required</li><li>Rolling back app data could impact external systems</li></ul>
+| pass:[<ul><li>Reduces risk if trying to fix app impact during maintenance window</li><li>Helpful if app impact could lead to app data corruption</li></ul>]
+| pass:[<ul><li>More storage space required</li><li>Rolling back app data could impact external systems</li></ul>]
 |===
 
 When snapshots only include the upgraded OS volumes, the best practice of isolating OS changes from app changes is followed.
