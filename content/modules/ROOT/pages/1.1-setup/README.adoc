@@ -50,7 +50,7 @@ If you are viewing this exercise using the Showroom experience, you will see a t
 {ssh_command}
 ----
 +
-Enter `yes` if you see a "key is not known" warning, then enter the password `{ssh_password}` when promted.
+Enter `yes` if you see a "key is not known" warning, then enter the password `{ssh_password}` when prompted.
 +
 * In either case, you should now see a logged in session that looks like this:
 +
