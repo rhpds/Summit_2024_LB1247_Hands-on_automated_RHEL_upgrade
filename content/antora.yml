@@ -17,11 +17,15 @@ asciidoc:
     automationcontroller_url: https://ansible-1.{guid}.example.opentlc.com
     automationcontroller_user_name: admin
     automationcontroller_user_password: MTpasswd
-    cockpit_url: https://ansible-1.wmrhz.sandbox2418.opentlc.com:9090/
+    cockpit_url: https://ansible-1.{guid}.example.opentlc.com:9090/
     cockpit_user_name: student
     cockpit_user_password: MTpasswd
     vscode_server_password: MTpasswd
-    vscode_server_url: https://ansible-1.wmrhz.sandbox2418.opentlc.com/editor/
+    vscode_server_url: https://ansible-1.{guid}.example.opentlc.com/editor/
+    node1_petname: calm7tetra
+    node2_petname: holy7hound
+    node3_petname: top8hare
+    node4_petname: sure8ocelot
     page-links:
     - url: {automationcontroller_url}
       text: "AAP Web UI"

@@ -54,7 +54,7 @@ The procedure below steps though the commands required to _manually_ install and
 This is done very much to mock how older traditional apps are deployed in the enterprise.
 If you want to take a shortcut as an alternative to manually running a bunch of commands, you can launch the "PETS / App Install" job template to deploy the example app.
 
-If the app install job is successful, you can skip ahead to <<step-3---test-the-pet-application,Step 3 - Test the Pet Application>>.
+If the app install job is successful, you can skip ahead to <<_step_3_test_the_pet_application,Step 3 - Test the Pet Application>>.
 ____
 
 * The first step in our app install procedure is to install a Java JDK.
@@ -69,6 +69,7 @@ ____
 +
 Login to your pet app server and run these commands:
 +
+[%nowrap,source,bash,role=execute]
 ----
 distver=$(sed -r 's/([^:]*:){4}//;s/(.).*/\1/' /etc/system-release-cpe)
 sudo yum-config-manager --add-repo=https://packages.adoptium.net/artifactory/rpm/rhel/$distver/x86_64
@@ -80,6 +81,7 @@ Answer `y` to any prompts from the last command.
 
 * Verify that the temurin-17-jdk package was installed:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 rpm -q temurin-17-jdk
 ----
@@ -89,6 +91,7 @@ If not, go back and figure out what went wrong.
 * Next, we will install the Spring Pet Clinic Sample Application under the home directory of the ec2-user.
 Run these commands:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 cd ~
 git clone https://github.com/spring-projects/spring-petclinic.git
@@ -108,6 +111,7 @@ sudo firewall-cmd --add-port=8080/tcp --permanent
 * We need to start the database server and create the database for our application.
 Use this command to enable and start the database:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 sudo systemctl enable --now mariadb
 ----
@@ -115,6 +119,7 @@ sudo systemctl enable --now mariadb
 Now use the `mysql` command line client to connect to the database server.
 For example:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 mysql --user root
 ----
@@ -122,6 +127,7 @@ mysql --user root
 This should bring you to a `MariaDB [(none)]>` prompt.
 Enter the following SQL commands at this prompt:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 CREATE DATABASE IF NOT EXISTS petclinic;
 ALTER DATABASE petclinic DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
@@ -133,6 +139,7 @@ quit
 * Now we are ready to start the application web service.
 Use this command to run it in the background:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 echo 'cd $HOME/spring-petclinic && ./mvnw spring-boot:run -Dspring-boot.run.profiles=mysql >> $HOME/app.log 2>&1' | at now
 ----
@@ -140,8 +147,9 @@ echo 'cd $HOME/spring-petclinic && ./mvnw spring-boot:run -Dspring-boot.run.prof
 * The application will take a couple minute to come up the first time.
 Check the `app.log` file to follow the progress and verify the web service has started successfully:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
-tailf ~/app.log
+tail -f ~/app.log
 ----
 +
 When you see events listed at the bottom of the log output like this example, that means the application is started successfully and ready for testing:
@@ -152,7 +160,7 @@ o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http
 o.s.s.petclinic.PetClinicApplication     : Started PetClinicApplication in 6.945 seconds (process running for 7.496)
 ----
 +
-Type Ctrl-C to quit the `tailf` command.
+Type Ctrl-C to quit the `tail -f` command.
 
 === Step 3 - Test the Pet Application
 
@@ -160,6 +168,7 @@ Now that we have installed our application and verified it is running, it's time
 
 * Use this command to determine the application's external URL:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 echo "http://$(curl -s ifconfig.me):8080"
 ----
@@ -190,6 +199,7 @@ We need to configure the app so it will start up automatically when our server i
 
 * Use this command to configure a reboot cron entry so the application will be started automatically after every reboot:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 echo '@reboot cd $HOME/spring-petclinic && ./mvnw spring-boot:run -Dspring-boot.run.profiles=mysql >> $HOME/app.log 2>&1' | crontab -
 ----
@@ -202,6 +212,7 @@ ____
 
 * Now reboot the server to verify this works:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 sudo reboot
 ----
@@ -216,6 +227,7 @@ ____
 Because the external IP addresses of the EC2 instances provisioned for the workshop are dynamically assigned (i.e., using DHCP), it is possible that the web user interface URL might change after a reboot.
 If you are unable to access the app after the reboot, run this command again to determine the new URL for the application web user interface:
 
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 echo "http://$(curl -s ifconfig.me):8080"
 ----

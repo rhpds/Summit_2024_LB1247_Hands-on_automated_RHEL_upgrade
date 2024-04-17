@@ -27,13 +27,14 @@ In the next exercise, we will be rolling back the RHEL upgrade on one of our ser
 
 * Choose an app server.
 It can be one of the RHEL7 instances that is now on RHEL8, or one of the RHEL8 instances that was upgraded to RHEL9.
-* Follow the steps you used with link:../1.1-setup/README.html#_step_2_open_a_terminal_session[Exercise 1.1: Step 2] to open a terminal session on the app server you have chosen to roll back.
+* Follow the steps you used with link:../1.1-setup/README.html#_step_2_using_the_terminal_session[Exercise 1.1: Step 2] to open a terminal session on the app server you have chosen to roll back.
 * At the shell prompt, use the `sudo -i` command to switch to the root user.
 For example:
 +
+[subs=attributes+]
 ----
-[ec2-user@cute-bedbug ~]$ sudo -i
-[root@cute-bedbug ~]#
+[ec2-user@{node1_petname} ~]$ sudo -i
+[root@{node1_petname} ~]#
 ----
 +
 Verify you see a root prompt like the example above.
@@ -48,6 +49,7 @@ Our pet app requires the JDK runtime to function.
 Without it, our application will be broken.
 We can simulate this by manually removing the package like this:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 dnf -y remove temurin-17-jdk
 ----
