@@ -15,6 +15,7 @@ You will have access to a host deployed with Ansible Automation Platform (AAP) w
 You will also have access to some "pet" application hosts, two with RHEL7 and another two with RHEL8.
 These are the hosts where we will be upgrading the RHEL operating system (OS).
 
+[cols="1,2"]
 |===
 | Role | Inventory name
 
@@ -38,55 +39,51 @@ We'll dive deeper into why we are using random names in a later exercise.
 
 === Step 1 - Access the Environment
 
-We can use Visual Studio Code (VS Code) as it provides a convenient and intuitive way to use a web browser to edit files and access terminal sessions. Alternatively, you can just connect using SSH in a terminal window.
+If you are viewing this exercise using the Showroom experience, you will see a terminal session frame on the right side of this browser tab.
 
-* If you prefer to just connect using SSH rather than using VS code, paste this command into your terminal:
+* Verify you see the ASCII art Red Hat logo and `[student@ansible-1 ~]$` shell prompt in the terminal session frame.
++
+* If you prefer to directly connect using SSH rather than using browser-based terminal, you can open your own terminal app and paste this command:
 +
 [%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 {ssh_command}
 ----
 +
-Enter `yes` if you see a "key is not known" warning, then enter the password `{ssh_password}` when promted. 
-
-* To use VS Code, open the link below and enter the password in your web browser:
+Enter `yes` if you see a "key is not known" warning, then enter the password `{ssh_password}` when promted.
 +
-[cols="~,~"]
-|===
-| Link
-| {vscode_server_url}[{vscode_server_url}^]
-
-| Password
-| `{vscode_server_password}`
-|===
+* In either case, you should now see a logged in session that looks like this:
 +
-____
-*Note*
+image::terminal_login.svg[Example ssh login to ansible-1 shell prompt]
 
-A welcome wizard may appear to guide you through configuring your VS Code user experience.
-This is optional as the default settings will work fine for this workshop.
-Feel free to step though the wizard to explore the VS code bells and whistles or you may just skip it.
-____
-
-=== Step 2 - Open a Terminal Session
+=== Step 2 - Using the Terminal Session
 
 Terminal sessions provide access to the RHEL commands and utilities that will help us understand what's going on "behind the curtain" when the RHEL in-place upgrade automation is doing its thing.
 
-* If you are using VS Code, follow this example to open a terminal session:
+* Your terminal session will be running on the AAP control host.
+Use the `cat /etc/hosts` command to verify the hostnames of your pet app hosts.
+Next, use the `ssh` command to login to one of your pet app hosts, for example:
 +
-image::new_term.svg[Example of how to open a terminal session in VS Code]
-
-* No matter if you used SSH or VS Code, your terminal session will be running on the AAP control host `ansible-1`.
-Use the `cat /etc/hosts` command to see the hostnames of your pet app hosts.
-Next, use the `ssh` command to login to one of your pet app hosts.
-Finally, use the highlighted commands to confirm the RHEL OS version and kernel version installed.
+[%nowrap,source,bash,role=execute,subs=attributes+]
+----
+ssh {node1_petname}
+----
++
+Finally, use these commands to confirm the RHEL OS version and kernel version installed:
++
+[%nowrap,source,bash,role=execute,subs=attributes+]
+----
+cat /etc/redhat-release
+uname -r
+----
 +
 For example:
 +
-image::ssh_login.svg[Example ssh login to pet app host]
-
-* In the example above, the command `ssh tidy-bengal` connects us to a new session on the named pet app host.
-Then the commands `cat /etc/redhat-release` and `uname -r` are used to output the OS release information `Red Hat Enterprise Linux Server release 7.9 (Maipo)` and kernel version `3.10.0-1160.88.1.el7.x86_64` from that host.
+image::rhel_and_kernel_versions.svg[Command output showing the RHEL and kernel versions]
++
+* In the example above, the ssh command connected us to a new session on the named pet app host.
++
+* Then the commands `cat /etc/redhat-release` and `uname -r` are used to output the OS release information `Red Hat Enterprise Linux Server release 7.9 (Maipo)` and kernel version `3.10.0-1160.114.2.el7.x86_64` from that host.
 
 === Step 3 - Access the AAP Web UI
 

@@ -66,7 +66,7 @@ Repeat the steps you followed with link:../2.3-check-upg/README.html#_step_2_ver
 
 * For example, if the pet app host you rolled back had been upgraded from RHEL7 to RHEL8, you should now see it is back to RHEL7:
 +
-image::commands_after_rollback.svg[command output showing the host is back to RHEL7 installed]
+image::rhel_and_kernel_versions.svg[Command output showing the RHEL and kernel versions]
 
 == Conclusion
 

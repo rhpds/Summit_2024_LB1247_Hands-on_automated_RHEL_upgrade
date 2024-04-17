@@ -73,16 +73,34 @@ For example, this pet app server that previously had RHEL8 is now reporting RHEL
 +
 image::rhel9_upgraded.svg[fluent-bee running Red Hat Enterprise Linux 9.2 (Plow)]
 +
-Here is an example one that was previously RHEL7 now running RHEL8:
+Here is an example of one that was previously RHEL7 now running RHEL8:
 +
 image::rhel8_upgraded.svg[vocal-hyena running Red Hat Enterprise Linux Server 8.8 (Oopta)]
 
-* You can also check the RHEL and kernel versions from the command line following the steps you used with link:../1.1-setup/README.html#_step_2_open_a_terminal_session[Exercise 1.1: Step 2].
+* You can also check the RHEL and kernel versions from the command line following the steps you used with link:../1.1-setup/README.html#_step_2_using_the_terminal_session[Exercise 1.1: Step 2].
 +
-At the shell prompt of your pet app servers, use the `cat /etc/redhat-release` and `uname -r` commands.
-Here's an example showing a pet app server that was upgraded to RHEL9:
+At the shell prompt of your pet app servers, use these commands to confirm the RHEL OS version and kernel version after the upgrades:
 +
-image::rhel9_commands.svg[command output showing RHEL9 is installed]
+[%nowrap,source,bash,role=execute,subs=attributes+]
+----
+cat /etc/redhat-release
+uname -r
+----
++
+Here's an example showing a pet app server that was upgraded from RHEL8 to RHEL9:
++
+image::upgraded_to_rhel9.svg[command output showing RHEL9 is installed]
++
+* We can also use the `last` command to demonstrate that the host was previously booting the kernel version from the old RHEL major version:
++
+[%nowrap,source,bash,role=execute,subs=attributes+]
+----
+last -w reboot
+----
++
+In this example, we see the history of RHEL8 kernel version booting before the upgrade and now the RHEL9 kernel version is booting:
++
+image::reboot_history.svg[last command output showing reboot history]
 
 == Conclusion
 

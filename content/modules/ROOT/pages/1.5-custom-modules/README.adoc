@@ -47,13 +47,15 @@ Refer back to https://github.com/swapdisk/workshops/blob/devel/exercises/ansible
 * Login to one of your pet app servers using the `ssh` command.
 For example:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
-ssh tidy-bengal
+ssh {node1_petname}
 ----
 
 * Now we will install the RPM package that provides our custom actor.
 Run the following command on your pet app server:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 sudo yum -y --enablerepo=leapp-supplements install leapp-upgrade-\*-supplements
 ----
@@ -105,6 +107,7 @@ Complete!
 * To demonstrate the custom actor at work, let's create a condition that violates our policy so that an inhibitor finding will be reported.
 Use this command:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 sudo touch /boot/policy-violation
 ----
@@ -134,6 +137,7 @@ image::reboot_hygiene_finding.svg[Finding details reported by reboot hygiene cus
 * Reboot the host to resolve the inhibitor finding.
 For example:
 +
+[%nowrap,source,bash,role=execute,subs=attributes+]
 ----
 sudo reboot
 ----
